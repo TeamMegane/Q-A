@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :answers
+  resources :pictures
   resources :questions
   get 'login/index'
 
