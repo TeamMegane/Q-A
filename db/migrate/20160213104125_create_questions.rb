@@ -12,3 +12,20 @@ class CreateQuestions < ActiveRecord::Migration
     end
   end
 end
+
+class CreatePictures < ActiveRecord::Migration
+  def change
+    create_table :pictures do |t|
+      t.string :name
+      t.string :content
+
+      t.timestamps null: false
+    end
+  end
+end
+
+class AddImageToPicture < ActiveRecord::Migration
+  def change
+    add_column :pictures, :image, :string
+  end
+end
