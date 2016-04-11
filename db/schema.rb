@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213111007) do
+ActiveRecord::Schema.define(version: 20160220102202) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "body"
@@ -21,12 +21,37 @@ ActiveRecord::Schema.define(version: 20160213111007) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "target_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["user_id", "target_user_id"], name: "index_follows_on_user_id_and_target_user_id", unique: true
+
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likeusers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string   "name"
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
